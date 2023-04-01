@@ -7,20 +7,24 @@ environment:
   sdk: '>=2.19.6 <3.0.0'
 
 dependencies:
+  carousel_slider: ^4.2.1
   flutter:
     sdk: flutter
   google_fonts: ^4.0.3
-
+  smooth_page_indicator: ^1.0.1
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.12.0"
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.12.0"
 
 flutter:
   uses-material-design: true
-
+  # ASSET
+  assets:
+    - assets/icons/loka_icon.png
+    - assets/images/
 # KONFIGURASI PUBKU
 flutter_icons:
   image_path: "assets/icons/loka_icon.png"

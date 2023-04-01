@@ -8,6 +8,8 @@ Color subtitleColor = const Color.fromRGBO(0, 0, 0, 1);
 
 TextStyle titleTextStyle = GoogleFonts.montserrat(color: titleColor);
 TextStyle subtitleTextStyle = GoogleFonts.montserrat(color: subtitleColor);
+TextStyle lightTitleStyle =
+    GoogleFonts.montserrat(color: primaryColor, fontWeight: medium);
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;

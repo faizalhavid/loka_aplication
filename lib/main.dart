@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loka/pages/home_Screen.dart';
+import 'package:loka/pages/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,13 +11,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/menu': (context) => const HomeScreen()
+      },
     );
   }
 }
