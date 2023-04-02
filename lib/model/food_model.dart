@@ -17,3 +17,22 @@ final subtitleEvents = [
   'Berkompetisi dengan seni memasak, mengembangkan budaya kuliner Indonesia!',
   'Mari Rasakan Kenikmatan Sate Lokal yang Beraneka Ragam di Festival In',
 ];
+
+// KATALOG FOOD
+//-> Kategori
+//
+List<String> categories = [
+  'Rekomendasi',
+  'Nasi',
+  'Jajanan',
+  'Minuman',
+  'Makanan Khas'
+];
+var pathIcon = 'assets/icons/';
+List<String> iconku = [
+  'assets/icons/like.png',
+  'assets/icons/rice.png',
+  'assets/icons/cake.png',
+  'assets/icons/juice.png',
+  'assets/icons/fkhas.png',
+];

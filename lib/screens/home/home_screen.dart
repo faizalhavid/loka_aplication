@@ -4,6 +4,8 @@ import 'package:loka/theme.dart';
 import 'package:loka/model/food_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'components/body.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -14,63 +16,71 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int activeIndex = 0;
   final controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(480),
-        child: AppBar(
-          flexibleSpace: Stack(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  viewportFraction: 1,
-                  height: 400,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 4),
-                  onPageChanged: (index, reason) =>
-                      setState(() => activeIndex = index),
-                ),
-                itemCount: urlImages.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = urlImages[index];
-                  final titleEvent = titleEvents[index];
-                  final subtitleEvent = subtitleEvents[index];
-                  return buildImage(urlImage, titleEvent, subtitleEvent, index);
-                },
-              ),
-              Positioned(
-                  top: 350,
-                  left: MediaQuery.of(context).size.width * 0.45,
-                  right: MediaQuery.of(context).size.width * 0.45,
-                  child: buildIndicator())
-            ],
+        preferredSize: const Size.fromHeight(400),
+        child: buildAppbar(context),
+      ),
+      body: const Body(),
+    );
+  }
+
+  AppBar buildAppbar(BuildContext context) {
+    return AppBar(
+      flexibleSpace: Stack(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CarouselSlider.builder(
+            options: CarouselOptions(
+              viewportFraction: 1,
+              height: 400,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 4),
+              onPageChanged: (index, reason) =>
+                  setState(() => activeIndex = index),
+            ),
+            itemCount: urlImages.length,
+            itemBuilder: (context, index, realIndex) {
+              final urlImage = urlImages[index];
+              final titleEvent = titleEvents[index];
+              final subtitleEvent = subtitleEvents[index];
+              return buildImage(urlImage, titleEvent, subtitleEvent, index);
+            },
           ),
-          leading: const Icon(
-            Icons.account_circle_rounded,
-            size: 34,
+          Positioned(
+              top: 350,
+              left: MediaQuery.of(context).size.width * 0.45,
+              right: MediaQuery.of(context).size.width * 0.45,
+              child: buildIndicator())
+        ],
+      ),
+      leading: IconButton(
+        icon: const Icon(Icons.account_circle_rounded),
+        color: Colors.white,
+        onPressed: () {},
+      ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: true,
+      title: Text(
+        'Loka',
+        style: lightTitleStyle,
+      ),
+      actions: [
+        const SizedBox(
+          width: 30,
+        ),
+        Container(
+          padding: const EdgeInsets.only(right: 5),
+          child: const Icon(
+            Icons.notifications_active,
             color: Colors.white,
           ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            'Loka',
-            style: lightTitleStyle,
-          ),
-          actions: const [
-            Icon(
-              Icons.notifications_active,
-              color: Colors.white,
-              size: 32,
-            ),
-          ],
         ),
-      ),
-      body: ListView(
-        children: const [],
-      ),
+      ],
     );
   }
 

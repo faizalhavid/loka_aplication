@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loka/pages/home_Screen.dart';
-import 'package:loka/pages/splash_screen.dart';
+import 'package:loka/screens/home/home_screen.dart';
+import 'package:loka/screens/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
