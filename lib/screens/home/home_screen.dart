@@ -4,7 +4,7 @@ import 'package:loka/theme.dart';
 import 'package:loka/model/food_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'components/body.dart';
+import 'components/body_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(250, 249, 251, 1),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(400),
         child: buildAppbar(context),
@@ -60,7 +61,18 @@ class _HomeScreenState extends State<HomeScreen> {
       leading: IconButton(
         icon: const Icon(Icons.account_circle_rounded),
         color: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Profile'),
+                  content: Column(
+                    children: const [Text('Nama : Mohamad Faizal Norhavid')],
+                  ),
+                );
+              });
+        },
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -74,9 +86,9 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 30,
         ),
         Container(
-          padding: const EdgeInsets.only(right: 5),
+          padding: const EdgeInsets.only(right: 15),
           child: const Icon(
-            Icons.notifications_active,
+            Icons.shopping_cart,
             color: Colors.white,
           ),
         ),

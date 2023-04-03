@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:loka/screens/home/home_screen.dart';
 import 'package:loka/theme.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,8 +16,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // ignore: todo
     // TODO: implement initState
-    Timer(const Duration(seconds: 3),
-        () => Navigator.pushNamed(context, '/menu'));
+    Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      ),
+    );
     super.initState();
   }
 
