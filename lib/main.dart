@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loka/model/food_model.dart';
 import 'package:loka/screens/home/home_screen.dart';
 import 'package:loka/screens/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,12 +13,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const SplashScreen(),
-        '/menu': (context) => const HomeScreen()
-      },
+    return ChangeNotifierProvider(
+      create: (context) => Food(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

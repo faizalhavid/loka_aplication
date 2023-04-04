@@ -4,10 +4,20 @@ import 'package:loka/model/food_model.dart';
 import 'package:loka/theme.dart';
 
 class BuildCard extends StatelessWidget {
-  final Food food;
-  final VoidCallback press;
-  const BuildCard({Key? key, required this.food, required this.press})
-      : super(key: key);
+  final String image, title, description, price;
+  final List<String> category;
+  final List<String> icon;
+  void Function()? press;
+  // final VoidCallback press;
+  BuildCard({
+    required this.image,
+    required this.title,
+    required this.description,
+    required this.category,
+    required this.icon,
+    required this.price,
+    required this.press,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +40,11 @@ class BuildCard extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    food.image,
+                    image,
                     width: 80,
                   ),
                   Text(
-                    food.title,
+                    title,
                     style: GoogleFonts.montserrat(
                         fontSize: 12.5,
                         fontWeight: FontWeight.bold,
@@ -91,14 +101,14 @@ class BuildCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             const Icon(
-                              Icons.info,
+                              Icons.note_add_outlined,
                               size: 16,
                             ),
                             const SizedBox(
                               width: 6,
                             ),
                             Text(
-                              'Detail',
+                              'Wishlist',
                               style: GoogleFonts.montserrat(
                                   fontWeight: medium,
                                   fontSize: 10,
@@ -115,7 +125,7 @@ class BuildCard extends StatelessWidget {
                             size: 16,
                           ),
                           Text(
-                            food.price.toString(),
+                            price,
                             style: GoogleFonts.montserrat(
                                 fontSize: 12,
                                 color: titleColor,

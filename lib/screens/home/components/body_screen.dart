@@ -3,11 +3,12 @@ import 'package:loka/screens/home/components/card_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loka/screens/detail/detail_screen.dart';
 import 'package:loka/theme.dart';
+import 'package:provider/provider.dart';
 
 import '../../../model/food_model.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,26 +26,39 @@ class Body extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: GridView.builder(
-              controller: ScrollController(),
-              itemCount: food.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 200,
-                crossAxisSpacing: 3,
-                childAspectRatio: 0.50,
-              ),
-              itemBuilder: (context, index) => BuildCard(
-                food: food[index],
-                press: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailScreen(
-                      food: food[index],
+            child: Consumer<Food>(
+              builder: (context, value, child) {
+                return GridView.builder(
+                    controller: ScrollController(),
+                    itemCount: value.foodItem.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisExtent: 200,
+                      crossAxisSpacing: 3,
+                      childAspectRatio: 0.50,
                     ),
-                  ),
-                ),
-              ),
+                    itemBuilder: (context, index) {
+                      return BuildCard(
+                        title: value.foodItem[index][0],
+                        description: value.foodItem[index][1],
+                        category: [
+                          value.foodItem[index][2][0],
+                          value.foodItem[index][1][1]
+                        ],
+                        icon: [
+                          value.foodItem[index][3][0],
+                          value.foodItem[index][3][1],
+                        ],
+                        price: value.foodItem[index][4],
+                        image: value.foodItem[index][5],
+                        press: () {
+                          Provider.of<Food>(context, listen: false)
+                              .addfoodToCart(index);
+                        },
+                      );
+                    });
+              },
             ),
           ),
         ),
@@ -54,7 +68,7 @@ class Body extends StatelessWidget {
 }
 
 class _Categories extends StatefulWidget {
-  const _Categories({super.key});
+  const _Categories({Key? key}) : super(key: key);
 
   @override
   State<_Categories> createState() => _CategoriesState();

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:loka/screens/cart/cart_screen.dart';
 import 'package:loka/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loka/model/food_model.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:badges/badges.dart' as badges;
 import 'components/body_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: const Size.fromHeight(400),
         child: buildAppbar(context),
       ),
-      body: const Body(),
+      body: Body(),
     );
   }
 
@@ -66,9 +69,40 @@ class _HomeScreenState extends State<HomeScreen> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
+                  insetPadding:
+                      EdgeInsets.only(top: 80, bottom: 80, left: 30, right: 30),
                   title: Text('Profile'),
-                  content: Column(
-                    children: const [Text('Nama : Mohamad Faizal Norhavid')],
+                  content: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Lottie.asset('assets/json/profile_ku.json'),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromRGBO(237, 237, 237, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            "Mohamad Faizal Norhavid\n",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                color: Colors.black,
+                                fontWeight: medium),
+                          ),
+                        ),
+                        Text(
+                          "3121500006",
+                          style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: Colors.black,
+                              fontWeight: medium),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               });
@@ -87,9 +121,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Container(
           padding: const EdgeInsets.only(right: 15),
-          child: const Icon(
-            Icons.shopping_cart,
+          child: IconButton(
+            icon: const badges.Badge(
+              child: Icon(
+                Icons.shopping_cart,
+                size: 25,
+              ),
+            ),
             color: Colors.white,
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return CartPage();
+                },
+              ),
+            ),
           ),
         ),
       ],

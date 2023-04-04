@@ -10,14 +10,14 @@ class CartModel extends ChangeNotifier {
       "Buah Naga",
       "12.80",
       "lib/images/dragon-fruit.png",
-      Colors.red[200],],
-      [
-        "Anggur",
-        "1.00",
-        "lib/images/grapes.png",
-        Colors.purple[100],
-      ]
-    
+      Colors.red[200],
+    ],
+    [
+      "Anggur",
+      "1.00",
+      "lib/images/grapes.png",
+      Colors.purple[100],
+    ]
   ];
 
   // list of cart items
@@ -28,23 +28,23 @@ class CartModel extends ChangeNotifier {
   get shopItems => _shopItems;
 
   // add item to cart
-  void addItemToCart(int index) {
+  void addfoodToCart(int index) {
     _cartItems.add(_shopItems[index]);
     notifyListeners();
   }
 
   // remove item from cart
-  void removeItemFromCart(int index) {
+  void removeFoodFromCart(int index) {
     _cartItems.removeAt(index);
     notifyListeners();
   }
 
   // calculate total price
-  String calculateTotal() {
+  String calculatePrice() {
     int totalPrice = 0;
     for (int i = 0; i < cartItems.length; i++) {
       totalPrice += int.parse(cartItems[i][1]);
     }
     return totalPrice.toStringAsFixed(2);
-}
+  }
 }
